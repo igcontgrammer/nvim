@@ -20,20 +20,12 @@ function M.setup()
 			{
 				"hrsh7th/nvim-cmp",
 			},
-			{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
-			{ "nvim-java/nvim-java" },
 			{
-				"github/copilot.vim",
-				config = function()
-					vim.g.copilot_no_tab_map = true
-					vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-				end,
+				"nvim-lualine/lualine.nvim",
+				dependencies = { "nvim-tree/nvim-web-devicons" },
 			},
 			{
-				"folke/tokyonight.nvim",
-				lazy = false,
-				priority = 1000,
-				opts = {},
+				"github/copilot.vim",
 			},
 			{
 				"kdheepak/lazygit.nvim",
@@ -74,11 +66,6 @@ function M.setup()
 				},
 			},
 			{
-				"catppuccin/nvim",
-				name = "catppuccin",
-				priority = 1000,
-			},
-			{
 				"windwp/nvim-autopairs",
 				event = "InsertEnter",
 				config = true,
@@ -106,13 +93,6 @@ function M.setup()
 				opts = {},
 			},
 			{
-				"craftzdog/solarized-osaka.nvim",
-				lazy = false,
-				priority = 1000,
-				opts = {},
-			},
-			{},
-			{
 				"folke/todo-comments.nvim",
 				dependencies = { "nvim-lua/plenary.nvim" },
 				opts = {},
@@ -122,7 +102,6 @@ function M.setup()
 			lazy = false,
 			version = false,
 		},
-		install = { colorscheme = { "habamax" } },
 		performance = {
 			rtp = {
 				disabled_plugins = {
@@ -140,6 +119,7 @@ function M.setup()
 	require("plugins.plugins..telescope").setup()
 	require("plugins.plugins.harpoon").setup()
 	require("plugins.plugins.lsp").setup()
+	require("plugins.plugins.lualine").setup()
 end
 
 return M
