@@ -60,6 +60,7 @@ function M.setup()
 			["@variable.member"] = { fg = "#c0caf5" },
 			["@constant"] = { fg = "#bb9af7", bold = true, italic = true },
 			["@constant.member"] = { fg = "#c0caf5", bold = true, italic = true },
+			["@keyword.operator"] = { fg = "#bb9af7", bold = true },
 		},
 	})
 
