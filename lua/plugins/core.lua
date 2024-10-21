@@ -120,6 +120,7 @@ function M.setup()
 	require("plugins.plugins.harpoon").setup()
 	require("plugins.plugins.lsp").setup()
 	require("plugins.plugins.lualine").setup()
+	require("plugins.plugins.cmp").setup()
 end
 
 return M

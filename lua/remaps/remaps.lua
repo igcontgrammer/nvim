@@ -73,16 +73,3 @@ vim.keymap.set("n", "<leader>lg", function()
 		vim.api.nvim_input("<ESC>")
 	end, 150) -- (milliseconds)
 end, { desc = "[g]it" })
-
-local cmp = require("cmp")
-cmp.setup({
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
-	},
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "buffer " },
-		{ name = "path" },
-	},
-})
