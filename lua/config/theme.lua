@@ -63,7 +63,7 @@ function M.setup()
 		},
 	})
 
-	vim.cmd("colorscheme rose-pine-moon")
+	vim.cmd("colorscheme rose-pine")
 end
 
 return M
