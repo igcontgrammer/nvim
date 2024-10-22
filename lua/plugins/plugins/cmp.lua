@@ -17,10 +17,13 @@ function M.setup()
 			["<C-e>"] = cmp.mapping.abort(),
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 		}),
+		buffer = {
+			enabled = false,
+		},
 		-- limitamos el alcance de las sugerencias al contexto
 		sources = {
 			{ name = "nvim_lsp" },
-			{ name = "buffer", max_item_count = 1 },
+			{ name = "buffer" },
 			{ name = "path" },
 		},
 	})
