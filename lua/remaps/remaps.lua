@@ -22,7 +22,7 @@ vim.keymap.set("n", "<leader>fs", function()
 end, { desc = "Buscar sÃ­mbolos en el documento" })
 
 vim.keymap.set("n", "<leader>fws", function()
-	require("telescope.builtin").lsp_dynamic_worespace_symbols()
+	require("telescope.builtin").lsp_dynamic_workspace_symbols()
 end, { desc = "Buscar simbolos en el espacio de trabajo" })
 
 vim.keymap.set("n", "<leader>vs", ":vsplit<cr>", opts)

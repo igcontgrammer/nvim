@@ -20,7 +20,7 @@ function M.setup()
 		-- limitamos el alcance de las sugerencias al contexto
 		sources = {
 			{ name = "nvim_lsp" },
-			{ name = "buffer", max_item_count = 7 },
+			{ name = "buffer", max_item_count = 1 },
 			{ name = "path" },
 		},
 	})
