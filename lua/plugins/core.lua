@@ -121,6 +121,7 @@ function M.setup()
 	require("plugins.plugins.lsp").setup()
 	require("plugins.plugins.lualine").setup()
 	require("plugins.plugins.cmp").setup()
+	require("plugins.plugins.neotree").setup()
 end
 
 return M
