@@ -1,8 +1,6 @@
-
 local M = {}
 
 function M.setup()
-
 	vim.g.mapleader = " "
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	if not vim.loop.fs_stat(lazypath) then
@@ -23,4 +21,3 @@ function M.setup()
 end
 
 return M
-

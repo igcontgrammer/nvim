@@ -20,11 +20,11 @@ function M.setup()
 		buffer = {
 			enabled = false,
 		},
-		-- limitamos el alcance de las sugerencias al contexto
+		-- limitamos el contexto a solo lsp
 		sources = {
 			{ name = "nvim_lsp" },
-			{ name = "buffer" },
-			{ name = "path" },
+			-- { name = "buffer" },
+			-- { name = "path" },
 		},
 	})
 end
