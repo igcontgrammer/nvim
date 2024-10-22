@@ -61,8 +61,9 @@ function M.setup()
 			["@constant"] = { fg = "#bb9af7", bold = true, italic = true },
 			["@constant.member"] = { fg = "#c0caf5", bold = true, italic = true },
 			["@keyword.operator"] = { fg = "#bb9af7", bold = true },
-			["@type.builtin"] = { fg = "#bb9af7", bold = true },
+			["@type.builtin"] = { fg = "#7aa2f7", bold = true },
 			["@type.definition"] = { fg = "#c0caf5", bold = true },
+			["@interface"] = { fg = "#bb9af7", bold = true },
 		},
 	})
 

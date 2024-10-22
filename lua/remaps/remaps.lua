@@ -73,3 +73,11 @@ vim.keymap.set("n", "<leader>lg", function()
 		vim.api.nvim_input("<ESC>")
 	end, 150) -- (milliseconds)
 end, { desc = "[g]it" })
+
+vim.api.nvim_set_keymap("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
