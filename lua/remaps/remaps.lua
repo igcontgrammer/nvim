@@ -45,13 +45,13 @@ vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buff
 
 vim.keymap.set("n", "<leader>ftt", ":Trouble<cr>", opts)
 
-vim.keymap.set("n", ",+", ":resize +20<cr>", opts)
+vim.keymap.set("n", ",.", ":resize +20<cr>", opts)
 
-vim.keymap.set("n", ",-", ":resize -20<cr>", opts)
+vim.keymap.set("n", ",/", ":resize -20<cr>", opts)
 
-vim.keymap.set("n", ",{", ":vertical resize -30<cr>", opts)
+vim.keymap.set("n", ",[", ":vertical resize -30<cr>", opts)
 
-vim.keymap.set("n", ",}", ":vertical resize +30<cr>", opts)
+vim.keymap.set("n", ",]", ":vertical resize +30<cr>", opts)
 
 vim.api.nvim_set_keymap("n", "<leader>bo", ":<space>b<cr>o<cr>", opts)
 
@@ -81,3 +81,39 @@ vim.api.nvim_set_keymap("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent 
 vim.api.nvim_set_keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+function OpenTerminalWithVenv()
+	local project_dir = vim.fn.getcwd()
+	local venv_path = project_dir .. "/venv"
+
+	if vim.fn.isdirectory(venv_path) == 1 then
+		venv_path = venv_path .. "/bin/activate"
+	else
+		venv_path = nil
+	end
+
+	vim.cmd("split | resize 10")
+	vim.cmd("terminal")
+
+	if venv_path then
+		vim.fn.chansend(vim.b.terminal_job_id, "source " .. venv_path .. "\n")
+	end
+
+	vim.cmd("startinsert!")
+end
+
+function show_filename_popup()
+	local filename = vim.fn.expand("%:t")
+	vim.api.nvim_command("echo '" .. filename .. "'")
+
+	vim.defer_fn(function()
+		vim.api.nvim_command("echo ''")
+	end, 2000)
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = show_filename_popup,
+})
+
+vim.api.nvim_set_keymap("n", "<leader>te", ":lua OpenTerminalWithVenv()<CR>", { noremap = true, silent = true })
