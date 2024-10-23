@@ -82,14 +82,15 @@ vim.api.nvim_set_keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, s
 
 vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-function OpenTerminalWithVenv()
+function OpenTerminal()
 	local project_dir = vim.fn.getcwd()
+	-- search for venv in the project
 	local venv_path = project_dir .. "/venv"
 
 	if vim.fn.isdirectory(venv_path) == 1 then
 		venv_path = venv_path .. "/bin/activate"
 	else
-		venv_path = nil
+		venv_path = ""
 	end
 
 	vim.cmd("split | resize 10")
@@ -102,7 +103,7 @@ function OpenTerminalWithVenv()
 	vim.cmd("startinsert!")
 end
 
-function show_filename_popup()
+local function show_filename_popup()
 	local filename = vim.fn.expand("%:t")
 	vim.api.nvim_command("echo '" .. filename .. "'")
 
@@ -116,4 +117,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	callback = show_filename_popup,
 })
 
-vim.api.nvim_set_keymap("n", "<leader>te", ":lua OpenTerminalWithVenv()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>te", ":lua OpenTerminal()<CR>", { noremap = true, silent = true })
