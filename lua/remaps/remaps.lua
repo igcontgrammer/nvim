@@ -109,12 +109,12 @@ local function show_filename_popup()
 
 	vim.defer_fn(function()
 		vim.api.nvim_command("echo ''")
-	end, 2000)
+	end, 3000)
 end
 
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*",
-	callback = show_filename_popup,
-})
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	pattern = "*",
+-- 	callback = show_filename_popup,
+-- })
 
 vim.api.nvim_set_keymap("n", "<leader>te", ":lua OpenTerminal()<CR>", { noremap = true, silent = true })
