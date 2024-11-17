@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap("n", "<leader>bo", ":<space>b<cr>o<cr>", opts)
 -- Repeat last search
 vim.api.nvim_set_keymap("n", "<leader>ll", ":Telescope resume<cr>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>ww", ":w<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
 
 vim.keymap.set("n", "<leader>lg", function()
 	--  get file name with extension
@@ -84,16 +84,14 @@ vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, sil
 
 function OpenTerminal()
 	local project_dir = vim.fn.getcwd()
-	-- search for venv in the project
-	local venv_path = project_dir .. "/venv"
+	local venv_path = project_dir .. "/venv/bin/activate"
 
-	if vim.fn.isdirectory(venv_path) == 1 then
-		venv_path = venv_path .. "/bin/activate"
-	else
-		venv_path = ""
+	if vim.fn.filereadable(venv_path) == 0 then
+		venv_path = nil
 	end
 
-	vim.cmd("split | resize 10")
+	vim.cmd("botright split")
+	vim.cmd("resize 10")
 	vim.cmd("terminal")
 
 	if venv_path then
@@ -102,6 +100,10 @@ function OpenTerminal()
 
 	vim.cmd("startinsert!")
 end
+
+vim.api.nvim_set_keymap("n", "<leader>te", ":lua OpenTerminal()<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
 local function show_filename_popup()
 	local filename = vim.fn.expand("%:t")
@@ -112,9 +114,7 @@ local function show_filename_popup()
 	end, 3000)
 end
 
--- vim.api.nvim_create_autocmd("BufEnter", {
--- 	pattern = "*",
--- 	callback = show_filename_popup,
--- })
-
-vim.api.nvim_set_keymap("n", "<leader>te", ":lua OpenTerminal()<CR>", { noremap = true, silent = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = show_filename_popup,
+})
