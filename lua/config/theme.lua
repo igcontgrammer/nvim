@@ -1,5 +1,14 @@
 local M = {}
 
+local ss = {
+	diagnostics = {
+		hint = "#A6E3A1", -- Color de texto
+	},
+	bg = {
+		cursorline = "#32302F", -- Color de fondo
+	},
+}
+
 function M.setup()
 	require("rose-pine").setup({
 		variant = "main",
@@ -85,8 +94,9 @@ function M.setup()
 			["@property"] = { fg = "#c0caf5" },
 		},
 	})
-
 	vim.cmd("colorscheme rose-pine")
+	-- poner un gris para mejorar la visibilidad de seleccion de archivos
+	vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = ss.diagnostics.hint, bg = ss.bg.cursorline })
 end
 
 return M

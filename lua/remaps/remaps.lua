@@ -45,20 +45,20 @@ vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buff
 
 vim.keymap.set("n", "<leader>ftt", ":Trouble<cr>", opts)
 
-vim.keymap.set("n", ",.", ":resize +20<cr>", opts)
+vim.keymap.set("n", ",.", ":resize +5<cr>", opts)
 
-vim.keymap.set("n", ",/", ":resize -20<cr>", opts)
+vim.keymap.set("n", ",/", ":resize -5<cr>", opts)
 
-vim.keymap.set("n", ",[", ":vertical resize -30<cr>", opts)
+vim.keymap.set("n", ",[", ":vertical resize -10<cr>", opts)
 
-vim.keymap.set("n", ",]", ":vertical resize +30<cr>", opts)
+vim.keymap.set("n", ",]", ":vertical resize +10<cr>", opts)
 
 vim.api.nvim_set_keymap("n", "<leader>bo", ":<space>b<cr>o<cr>", opts)
 
 -- Repeat last search
 vim.api.nvim_set_keymap("n", "<leader>ll", ":Telescope resume<cr>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>ww", ":w<CR>", opts)
 
 vim.keymap.set("n", "<leader>lg", function()
 	--  get file name with extension
@@ -84,16 +84,18 @@ vim.api.nvim_set_keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, sil
 
 function OpenTerminal()
 	local project_dir = vim.fn.getcwd()
+	-- look for a virtualenv in the project
 	local venv_path = project_dir .. "/venv/bin/activate"
 
 	if vim.fn.filereadable(venv_path) == 0 then
-		venv_path = nil
+		venv_path = ""
 	end
 
 	vim.cmd("botright split")
 	vim.cmd("resize 10")
 	vim.cmd("terminal")
 
+	-- if there is a virtualenv, activate it
 	if venv_path then
 		vim.fn.chansend(vim.b.terminal_job_id, "source " .. venv_path .. "\n")
 	end
