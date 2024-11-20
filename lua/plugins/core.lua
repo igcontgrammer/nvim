@@ -13,11 +13,6 @@ function M.setup()
 				},
 			},
 			{
-				"L3MON4D3/LuaSnip",
-				version = "v2.*",
-				build = "make install_jsregexp",
-			},
-			{
 				"hrsh7th/nvim-cmp",
 			},
 			{
@@ -66,12 +61,6 @@ function M.setup()
 				},
 			},
 			{
-				"craftzdog/solarized-osaka.nvim",
-				lazy = false,
-				priority = 1000,
-				opts = {},
-			},
-			{
 				"windwp/nvim-autopairs",
 				event = "InsertEnter",
 				config = true,
@@ -103,6 +92,20 @@ function M.setup()
 				dependencies = { "nvim-lua/plenary.nvim" },
 				opts = {},
 			},
+    {
+      "L3MON4D3/LuaSnip",
+      version = "v2.*",  -- Asegœrate de usar la versi—n m‡s reciente
+      build = "make install_jsregexp",  -- Opcional: instala jsregexp para soporte adicional
+      config = function()
+        require("luasnip").setup({
+          -- Configuraciones opcionales
+        })
+      end,
+    },
+    {
+      "rafamadriz/friendly-snippets",
+      event = "InsertEnter",
+    },
 		},
 		defaults = {
 			lazy = false,

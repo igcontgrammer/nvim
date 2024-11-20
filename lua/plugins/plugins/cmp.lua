@@ -3,6 +3,20 @@ local M = {}
 function M.setup()
 	local cmp = require("cmp")
 	cmp.setup({
+		formatting = {
+			fields = { "abbr", "kind", "menu" },
+			expandable_indicator = true,
+			format = function(entry, vim_item)
+				vim_item.abbr = vim_item.abbr:gsub("^%-", "") -- Elimina el signo '-' si existe
+				vim_item.menu = ({
+					buffer = "[Buffer]",
+					nvim_lsp = "[LSP]",
+					luasnip = "[Snippet]",
+					path = "[Path]",
+				})[entry.source.name]
+				return vim_item
+			end,
+		},
 		window = {
 			-- asignamos en bordeado el cuadro de autocompletado
 			completion = cmp.config.window.bordered(),

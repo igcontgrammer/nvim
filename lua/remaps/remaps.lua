@@ -120,3 +120,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
 	callback = show_filename_popup,
 })
+
+-- Crea un grupo de autocomandos para organizar mejor
+-- local group = vim.api.nvim_create_augroup("FirstBufferGroup", { clear = true })
+--
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	group = group,
+-- 	once = true, -- Se asegura de que se ejecute solo una vez
+-- 	callback = function()
+-- 		vim.cmd("Neotree")
+-- 	end,
+-- })
