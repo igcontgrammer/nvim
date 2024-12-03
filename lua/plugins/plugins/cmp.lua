@@ -1,8 +1,14 @@
+require("luasnip.loaders.from_vscode").lazy_load()
 local M = {}
 
 function M.setup()
 	local cmp = require("cmp")
 	cmp.setup({
+		snippet = {
+			expand = function(args)
+				require("luasnip").lsp_expand(args.body)
+			end,
+		},
 		formatting = {
 			fields = { "abbr", "kind", "menu" },
 			expandable_indicator = true,
@@ -37,8 +43,9 @@ function M.setup()
 		-- limitamos el contexto a solo lsp
 		sources = {
 			{ name = "nvim_lsp" },
-			-- { name = "buffer" },
-			-- { name = "path" },
+			{ name = "buffer" },
+			{ name = "path" },
+			{ name = "luasnip" },
 		},
 	})
 end

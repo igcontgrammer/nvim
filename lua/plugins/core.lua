@@ -20,9 +20,6 @@ function M.setup()
 				dependencies = { "nvim-tree/nvim-web-devicons" },
 			},
 			{
-				"github/copilot.vim",
-			},
-			{
 				"kdheepak/lazygit.nvim",
 				cmd = {
 					"LazyGit",
@@ -42,6 +39,9 @@ function M.setup()
 				"ThePrimeagen/harpoon",
 				branch = "harpoon2",
 				dependencies = { "nvim-lua/plenary.nvim" },
+			},
+			{
+				"github/copilot.vim",
 			},
 			{
 				"linux-cultist/venv-selector.nvim",
@@ -92,20 +92,16 @@ function M.setup()
 				dependencies = { "nvim-lua/plenary.nvim" },
 				opts = {},
 			},
-    {
-      "L3MON4D3/LuaSnip",
-      version = "v2.*",  -- Asegœrate de usar la versi—n m‡s reciente
-      build = "make install_jsregexp",  -- Opcional: instala jsregexp para soporte adicional
-      config = function()
-        require("luasnip").setup({
-          -- Configuraciones opcionales
-        })
-      end,
-    },
-    {
-      "rafamadriz/friendly-snippets",
-      event = "InsertEnter",
-    },
+			{
+				"L3MON4D3/LuaSnip",
+				-- follow latest release.
+				version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+				-- install jsregexp (optional!).
+				build = "make install_jsregexp",
+			},
+			{
+				"saadparwaiz1/cmp_luasnip",
+			},
 		},
 		defaults = {
 			lazy = false,
@@ -127,10 +123,10 @@ function M.setup()
 	require("plugins.plugins.conform").setup()
 	require("plugins.plugins..telescope").setup()
 	require("plugins.plugins.harpoon").setup()
-	require("plugins.plugins.lsp").setup()
 	require("plugins.plugins.lualine").setup()
 	require("plugins.plugins.cmp").setup()
 	require("plugins.plugins.neotree").setup()
+	require("plugins.plugins.lsp").setup()
 end
 
 return M

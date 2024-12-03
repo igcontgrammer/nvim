@@ -2,10 +2,10 @@ local M = {}
 
 local ss = {
 	diagnostics = {
-		hint = "#A6E3A1", -- Color de texto
+		hint = "#A6E3A1",
 	},
 	bg = {
-		cursorline = "#32302F", -- Color de fondo
+		cursorline = "#32302F",
 	},
 }
 
@@ -78,15 +78,20 @@ function M.setup()
 			["@keyword.return"] = { fg = "#CBA6F7" },
 			["@keyword.operator"] = { fg = "#bb9af7", bold = true },
 			["@function"] = { fg = "#DCDCAA" },
-			["@method"] = { fg = "#DCDCAA" },
+			["@function.builtin"] = { fg = "#DCDCAA" },
 			["@function.call"] = { fg = "#DCDCAA" },
+			["@function.macro"] = { fg = "#DCDCAA" },
+			["@function.method"] = { fg = "#DCDCAA" },
+			["@function.method.call"] = { fg = "#DCDCAA" },
+			["@method"] = { fg = "#DCDCAA" },
 			["@method.call"] = { fg = "#DCDCAA" },
 			["@tag"] = { fg = "#4EC9B0", bold = true },
 			["@tag.attribute"] = { fg = "#bb9af7" },
 			["@tag.delimter"] = { fg = "#4EC9B0" },
 			["@variable"] = { fg = "#c0caf5" },
 			["@variable.member"] = { fg = "#c0caf5" },
-			["@constant.member"] = { fg = "#c0caf5", bold = true, italic = true },
+			["@constant.member"] = { fg = "#7aa2f7", bold = true, italic = true },
+			["@constant"] = { fg = "#7aa2f7", bold = true, italic = true },
 			["@type"] = { fg = "#7aa2f7" },
 			["@type.builtin"] = { fg = "#7aa2f7" },
 			["@type.definition"] = { fg = "#c0caf5" },
@@ -95,7 +100,7 @@ function M.setup()
 		},
 	})
 	vim.cmd("colorscheme rose-pine")
-	-- poner un gris para mejorar la visibilidad de seleccion de archivos
+	-- poner un fondo gris con texto verde para mejorar la visibilidad en la seleccion de archivos
 	vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = ss.diagnostics.hint, bg = ss.bg.cursorline })
 end
 
