@@ -1,107 +1,56 @@
 local M = {}
 
-local ss = {
-	diagnostics = {
-		hint = "#A6E3A1",
-	},
-	bg = {
-		cursorline = "#32302F",
-	},
-}
-
 function M.setup()
-	require("rose-pine").setup({
-		variant = "main",
-		dark_variant = "main",
-		dim_inactive_windows = false,
-		extend_background_behind_borders = true,
-		enable = {
-			terminal = true,
-			legacy_highlights = true,
-			migrations = true,
+	require("catppuccin").setup({
+		flavour = "auto", -- latte, frappe, macchiato, mocha
+		background = { -- :h background
+			light = "latte",
+			dark = "mocha",
 		},
-		styles = {
-			bold = false,
-			italic = false,
-			transparency = true,
+		transparent_background = false, -- disables setting the background color.
+		show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+		term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+		dim_inactive = {
+			enabled = false, -- dims the background color of inactive window
+			shade = "dark",
+			percentage = 0.15, -- percentage of the shade to apply to the inactive window
 		},
-		groups = {
-			border = "muted",
-			link = "iris",
-			panel = "surface",
-
-			error = "love",
-			hint = "iris",
-			info = "foam",
-			note = "pine",
-			todo = "rose",
-			warn = "gold",
-
-			git_add = "foam",
-			git_change = "rose",
-			git_delete = "love",
-			git_dirty = "rose",
-			git_ignore = "muted",
-			git_merge = "iris",
-			git_rename = "pine",
-			git_stage = "iris",
-			git_text = "rose",
-			git_untracked = "subtle",
-
-			h1 = "iris",
-			h2 = "foam",
-			h3 = "rose",
-			h4 = "gold",
-			h5 = "pine",
-			h6 = "foam",
+		no_italic = false, -- Force no italic
+		no_bold = false, -- Force no bold
+		no_underline = false, -- Force no underline
+		styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+			comments = { "italic" }, -- Change the style of comments
+			conditionals = { "italic" },
+			loops = {},
+			functions = {},
+			keywords = {},
+			strings = {},
+			variables = {},
+			numbers = {},
+			booleans = {},
+			properties = {},
+			types = {},
+			operators = {},
+			-- miscs = {}, -- Uncomment to turn off hard-coded styles
 		},
-		palette = {
-			moon = {
-				base = "#14191a",
-				overlay = "#363738",
+		color_overrides = {},
+		custom_highlights = {},
+		default_integrations = true,
+		integrations = {
+			cmp = true,
+			gitsigns = true,
+			nvimtree = true,
+			treesitter = true,
+			notify = false,
+			mini = {
+				enabled = true,
+				indentscope_color = "",
 			},
-		},
-		highlight_groups = {
-			Comment = { fg = "#6c6f93" },
-			CursorLine = { bg = "#1a1b26" },
-			CursorColumn = { bg = "#1a1b26" },
-			["@keyword"] = { fg = "#CBA6F7" },
-			["@keyword.control"] = { fg = "#CBA6F7" },
-			["@keyword.coroutine"] = { fg = "#CBA6F7" },
-			["@keyword.import"] = { fg = "#CBA6F7" },
-			["@keyword.debug"] = { fg = "#CBA6F7" },
-			["@keyword.modifier"] = { fg = "#CBA6F7" },
-			["@keyword.exception"] = { fg = "#CBA6F7" },
-			["@keyword.conditional"] = { fg = "#CBA6F7" },
-			["@keyword.repeat"] = { fg = "#CBA6F7" },
-			["@keyword.conditional.ternary"] = { fg = "#CBA6F7" },
-			["@keyword.return"] = { fg = "#CBA6F7" },
-			["@keyword.operator"] = { fg = "#bb9af7", bold = true },
-			["@function"] = { fg = "#DCDCAA" },
-			["@function.builtin"] = { fg = "#DCDCAA" },
-			["@function.call"] = { fg = "#DCDCAA" },
-			["@function.macro"] = { fg = "#DCDCAA" },
-			["@function.method"] = { fg = "#DCDCAA" },
-			["@function.method.call"] = { fg = "#DCDCAA" },
-			["@method"] = { fg = "#DCDCAA" },
-			["@method.call"] = { fg = "#DCDCAA" },
-			["@tag"] = { fg = "#4EC9B0", bold = true },
-			["@tag.attribute"] = { fg = "#bb9af7" },
-			["@tag.delimter"] = { fg = "#4EC9B0" },
-			["@variable"] = { fg = "#c0caf5" },
-			["@variable.member"] = { fg = "#c0caf5" },
-			["@constant.member"] = { fg = "#7aa2f7", bold = true, italic = true },
-			["@constant"] = { fg = "#7aa2f7", bold = true, italic = true },
-			["@type"] = { fg = "#7aa2f7" },
-			["@type.builtin"] = { fg = "#7aa2f7" },
-			["@type.definition"] = { fg = "#c0caf5" },
-			["@namespace"] = { fg = "#7aa2f7" },
-			["@property"] = { fg = "#c0caf5" },
+			-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 		},
 	})
-	vim.cmd("colorscheme rose-pine")
-	-- poner un fondo gris con texto verde para mejorar la visibilidad en la seleccion de archivos
-	vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = ss.diagnostics.hint, bg = ss.bg.cursorline })
+
+	vim.cmd.colorscheme("catppuccin-mocha")
 end
 
 return M

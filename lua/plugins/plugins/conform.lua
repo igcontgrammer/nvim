@@ -17,9 +17,15 @@ function M.setup()
 			json = { "prettier" },
 			css = { "prettier" },
 			html = { "prettier" },
+			cs = { "csharpier" }, -- Solo csharpier para archivos .cs
 		},
 
 		formatters = {
+			csharpier = {
+				command = "dotnet",
+				args = { "csharpier", "--write-stdout", "$FILENAME" }, -- Argumentos para CSharpier
+				stdin = false, -- CSharpier no acepta entrada estándar
+			},
 			prettier = {
 				stdin = true,
 				options = {
@@ -43,7 +49,15 @@ function M.setup()
 					},
 				},
 			},
+			format_on_save = {
+				lsp_fallback = true, -- Utiliza LSP si no hay formateador configurado
+				async = false, -- Formateo sincrónico
+				timeout_ms = 5000, -- Tiempo de espera de 5 segundos
+			},
 		},
+
+		-- Opcional: deshabilita el formateo en lenguajes no configurados explícitamente
+		default_formatter = nil,
 	})
 end
 

@@ -13,9 +13,6 @@ function M.setup()
 				},
 			},
 			{
-				"hrsh7th/nvim-cmp",
-			},
-			{
 				"nvim-lualine/lualine.nvim",
 				dependencies = { "nvim-tree/nvim-web-devicons" },
 			},
@@ -94,14 +91,20 @@ function M.setup()
 			},
 			{
 				"L3MON4D3/LuaSnip",
-				-- follow latest release.
-				version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-				-- install jsregexp (optional!).
-				build = "make install_jsregexp",
 			},
 			{
-				"saadparwaiz1/cmp_luasnip",
+				"hrsh7th/nvim-cmp",
 			},
+			{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+			{ "shaunsingh/nord.nvim" },
+			{
+				"mfussenegger/nvim-dap",
+			},
+			{
+				"mfussenegger/nvim-dap-python",
+			},
+
+			{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = {} },
 		},
 		defaults = {
 			lazy = false,
@@ -124,9 +127,11 @@ function M.setup()
 	require("plugins.plugins..telescope").setup()
 	require("plugins.plugins.harpoon").setup()
 	require("plugins.plugins.lualine").setup()
-	require("plugins.plugins.cmp").setup()
+	-- require("plugins.plugins.cmp").setup()
 	require("plugins.plugins.neotree").setup()
 	require("plugins.plugins.lsp").setup()
+	require("plugins.plugins.dap").setup()
+	require("dap-python").setup("python3")
 end
 
 return M

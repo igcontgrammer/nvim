@@ -15,7 +15,7 @@ vim.keymap.set(
 	opts
 )
 
-vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", opts)
+vim.keymap.set("n", "<leader>fl", "<cmd>Telescope live_grep<CR>", {})
 
 vim.keymap.set("n", "<leader>fs", function()
 	require("telescope.builtin").lsp_document_symbols()

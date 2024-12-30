@@ -4,7 +4,7 @@ function M.setup()
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
-			theme = "rose-pine",
+			-- theme = "rose-pine",
 		},
 	})
 end
