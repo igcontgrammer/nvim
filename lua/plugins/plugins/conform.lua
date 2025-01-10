@@ -21,11 +21,11 @@ function M.setup()
 		},
 
 		formatters = {
-			csharpier = {
-				command = "dotnet",
-				args = { "csharpier", "--write-stdout", "$FILENAME" }, -- Argumentos para CSharpier
-				stdin = false, -- CSharpier no acepta entrada estándar
-			},
+			-- csharpier = {
+			-- 	command = "dotnet",
+			-- 	args = { "csharpier", "--write-stdout", "$FILENAME" }, -- Argumentos para CSharpier
+			-- 	stdin = true, -- CSharpier no acepta entrada estándar
+			-- },
 			prettier = {
 				stdin = true,
 				options = {

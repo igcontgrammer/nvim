@@ -50,7 +50,8 @@ function M.setup()
 		},
 	})
 
-	vim.cmd.colorscheme("catppuccin-mocha")
+	-- setup must be called before loading
+	vim.cmd.colorscheme("catppuccin")
 end
 
 return M
