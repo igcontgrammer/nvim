@@ -16,8 +16,6 @@ function M.setup()
 
 	-- optionally enable 24-bit colour
 	vim.opt.termguicolors = true
-
-	vim.api.nvim_command("autocmd FileType markdown setlocal nospell")
 end
 
 return M

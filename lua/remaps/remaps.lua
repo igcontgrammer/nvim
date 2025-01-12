@@ -139,15 +139,8 @@ vim.keymap.set({ "i", "s" }, "<C-E>", function()
 	end
 end, { silent = true })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	callback = function()
-		vim.o.spell = false
-	end,
-})
 vim.api.nvim_set_keymap("n", "J", "<nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "K", "<nop>", { noremap = true, silent = true })
-
 
 -- Crea un grupo de autocomandos para organizar mejor
 -- local group = vim.api.nvim_create_augroup("FirstBufferGroup", { clear = true })

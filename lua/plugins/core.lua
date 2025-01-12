@@ -65,6 +65,7 @@ function M.setup()
 					{ ",v", "<cmd>VenvSelect<cr>" },
 				},
 			},
+			{ "rebelot/kanagawa.nvim" },
 			{
 				"windwp/nvim-autopairs",
 				event = "InsertEnter",
@@ -111,6 +112,7 @@ function M.setup()
 			{
 				"mfussenegger/nvim-dap-python",
 			},
+			{ "EdenEast/nightfox.nvim" },
 			{
 				"saghen/blink.cmp",
 				version = "*",
@@ -167,6 +169,14 @@ function M.setup()
 	require("plugins.plugins.dap").setup()
 	-- require("snippets.snippets").setup()
 	require("dap-python").setup("python3")
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = { "txt", "markdown" },
+		callback = function()
+			vim.opt_local.spell = true -- Activar el spell check
+			vim.opt_local.spelllang = "es" -- Configurar el idioma a español
+		end,
+	})
 end
 
 return M
