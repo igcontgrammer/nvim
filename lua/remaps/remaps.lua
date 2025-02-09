@@ -142,6 +142,24 @@ end, { silent = true })
 vim.api.nvim_set_keymap("n", "J", "<nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "K", "<nop>", { noremap = true, silent = true })
 
+-- wa
+vim.api.nvim_set_keymap("n", "<leader>wa", ":wa<CR>", { noremap = true, silent = true })
+-- qa
+vim.api.nvim_set_keymap("n", "<leader>qa", ":qa<CR>", { noremap = true, silent = true })
+
+-- Configuración de atajos de teclado
+local function map(mode, lhs, rhs, opts)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+-- Atajo para guardar todos los buffers con Cmd + s
+map("n", "<D-s>", ":wa<CR>", { desc = "Guardar todos los buffers" })
+map("i", "<D-s>", "<Esc>:wa<CR>", { desc = "Guardar todos los buffers (desde modo insert)" })
+
 -- Crea un grupo de autocomandos para organizar mejor
 -- local group = vim.api.nvim_create_augroup("FirstBufferGroup", { clear = true })
 --

@@ -112,6 +112,14 @@ function M.setup()
 			{
 				"mfussenegger/nvim-dap-python",
 			},
+			"vague2k/vague.nvim",
+			config = function()
+				-- NOTE: you do not need to call setup if you don't want to.
+				require("vague").setup({
+					-- optional configuration here
+				})
+			end,
+
 			{ "EdenEast/nightfox.nvim" },
 			{
 				"saghen/blink.cmp",
@@ -132,15 +140,55 @@ function M.setup()
 							require("luasnip").jump(direction)
 						end,
 					},
+					sources = {
+						default = { "lsp" },
+						providers = {
+							lsp = {
+								name = "LSP",
+								module = "blink.cmp.sources.lsp",
+							},
+						},
+					},
 					completion = {
+						-- Desactivar el "ghost text"
 						ghost_text = {
 							enabled = false,
 						},
+
+						-- ...share/nvim/lazy/blink.cmp/lua/blink/cmp/config/utils.lua:32: completion.sources: unexpected field found in configuration
+						documentation = {
+							auto_show = true,
+							auto_show_delay_ms = 500,
+						},
+						-- Configurar fuentes de autocompletado
 					},
 				},
 			},
+			{
+				"navarasu/onedark.nvim",
+			},
 
-			{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = {} },
+			{
+				"nvim-telescope/telescope-file-browser.nvim",
+				dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+			},
+			{
+				"Mofiqul/vscode.nvim",
+			},
+
+			{ "NLKNguyen/papercolor-theme" },
+			{ "bluz71/vim-nightfly-colors" },
+
+			-- { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = {} },
+			{ "blazkowolf/gruber-darker.nvim" },
+			{
+				"iamcco/markdown-preview.nvim",
+				ft = { "markdown" },
+				build = "cd app && yarn install",
+				config = function()
+					vim.g.mkdp_filetypes = { "markdown" }
+				end,
+			},
 		},
 		defaults = {
 			lazy = false,
@@ -160,7 +208,7 @@ function M.setup()
 	})
 	require("mini.surround").setup()
 	require("plugins.plugins.conform").setup()
-	require("plugins.plugins..telescope").setup()
+	require("plugins.plugins.telescope").setup()
 	require("plugins.plugins.harpoon").setup()
 	require("plugins.plugins.lualine").setup()
 	-- require("plugins.plugins.cmp").setup()
@@ -169,14 +217,6 @@ function M.setup()
 	require("plugins.plugins.dap").setup()
 	-- require("snippets.snippets").setup()
 	require("dap-python").setup("python3")
-
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = { "txt", "markdown" },
-		callback = function()
-			vim.opt_local.spell = true -- Activar el spell check
-			vim.opt_local.spelllang = "es" -- Configurar el idioma a español
-		end,
-	})
 end
 
 return M
